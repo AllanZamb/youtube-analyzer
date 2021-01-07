@@ -16,8 +16,8 @@ class YTstats:
         self.get_channel_video_data()
 
     def get_channel_statistics(self):
-        """Extract the channel statistics"""
-        print('get channel statistics...')
+        """ Extracción de estadísticas"""
+        print('Obtenemos las estadísticas del canal...')
         url = f'https://www.googleapis.com/youtube/v3/channels?part=statistics&id={self.channel_id}&key={self.api_key}'
         pbar = tqdm(total=1)
         
@@ -130,6 +130,7 @@ class YTstats:
         channel_title = self.video_data.popitem()[1].get('channelTitle', self.channel_id)
         channel_title = channel_title.replace(" ", "_").lower()
         filename = channel_title + '.json'
+        #Cambiar codificación de salida
         with open(filename, 'w') as f:
             json.dump(fused_data, f, indent=4)
         
